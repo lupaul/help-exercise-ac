@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   has_many :messages
   has_many :comments
+  has_many :subscribes
+  has_many :subscribedmessage, through: :subscribes, source: :message
+  has_many :likes
+  has_many :likedmessage, through: :likes, source: :message
 
   def display_name
     self.email.split("@").first
@@ -22,7 +26,7 @@ class User < ApplicationRecord
     self.messages.find_each do |x|
       count += x.title.split(" ").size if x.title
       count += x.content.split(" ").size if x.content
-      
+
     end
 
     self.comments.find_each do |x|
