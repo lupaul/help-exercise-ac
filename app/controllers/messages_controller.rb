@@ -54,9 +54,12 @@ class MessagesController < ApplicationController
 
   def destroy
     @message = current_user.messages.find( params[:id] )
-    @message.destroy
+    # @message.destroy
+    respond_to do |format|
+      format.js
+    end
 
-    redirect_to root_path
+    # redirect_to root_path
   end
 
   protected
