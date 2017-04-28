@@ -22,6 +22,7 @@ class User < ApplicationRecord
     self.messages.find_each do |x|
       count += x.title.split(" ").size if x.title
       count += x.content.split(" ").size if x.content
+      
     end
 
     self.comments.find_each do |x|
